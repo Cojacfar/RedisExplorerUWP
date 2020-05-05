@@ -17,12 +17,12 @@ namespace RedisExplorerUWP
     public sealed partial class MainPage : Page, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        public ObservableCollection<SupportTicket> itemList { get; set; } = new ObservableCollection<SupportTicket>();
+        public ObservableCollection<RedisItem> itemList { get; set; } = new ObservableCollection<RedisItem>();
         public ObservableCollection<ConnectionString> recentConnectionStrings { get; set; }
         public string currentConnectionString = defaultString;
         public string currentNick = defaultNick;
-        public SupportTicket selectedItem;
-        public SupportTicket currentItem;
+        public RedisItem selectedItem;
+        public RedisItem currentItem;
         public ConnectionString selectedConn;
         private Boolean itemsLoaded = false;
         private DataHelper _redisHelper;
@@ -52,7 +52,7 @@ namespace RedisExplorerUWP
                 GetRecentConnections();
                 NotifyPropertyChanged(nameof(itemList));
                 Debug.WriteLine("Loaded Tickets");
-                Debug.WriteLine($"First Loaded Ticket after Async: {itemList[0].SupportTicketNumber}");
+                Debug.WriteLine($"First Loaded Ticket after Async: {itemList[0].PrimaryKey}");
             }
             Debug.WriteLine("Attempted List_Loaded, but ticketsLoaded was true");
         }
@@ -61,7 +61,7 @@ namespace RedisExplorerUWP
         {
             if (selectedItem != null)
             {
-                Debug.WriteLine($"Service Ticket {selectedItem.SupportTicketNumber} selected");
+                Debug.WriteLine($"Service Ticket {selectedItem.PrimaryKey} selected");
                 currentItem = selectedItem.Clone();
                 NotifyPropertyChanged(nameof(currentItem));
                 MainSplit.IsPaneOpen = true;
@@ -80,8 +80,8 @@ namespace RedisExplorerUWP
 
         public async void Button_Delete(Object sender, RoutedEventArgs e)
         {
-            Boolean result = await _redisHelper.DeleteTicket(selectedItem.SupportTicketNumber);
-            Debug.WriteLine($"Result of deleting {selectedItem.SupportTicketNumber} is {result}");
+            Boolean result = await _redisHelper.DeleteTicket(selectedItem.PrimaryKey);
+            Debug.WriteLine($"Result of deleting {selectedItem.PrimaryKey} is {result}");
             itemList.Remove(selectedItem);
             MainSplit.IsPaneOpen = false;
         }
@@ -96,17 +96,16 @@ namespace RedisExplorerUWP
                 Debug.WriteLine($"Result of Redis AddTicket: {createResult}");
                 itemList.Add(currentItem);
                 NotifyPropertyChanged(nameof(itemList));
-            } else if (selectedItem.SupportTicketNumber == currentItem.SupportTicketNumber)
+            } else if (selectedItem.PrimaryKey == currentItem.PrimaryKey)
             {
-                    await _redisHelper.EditTicket(selectedItem);
+                    await _redisHelper.EditItem(selectedItem);
                     var index = itemList.IndexOf(selectedItem);
-                    Debug.WriteLine($"Updated ticket {selectedItem.SupportTicketNumber}");
-                    Debug.WriteLine($"CurrentTicket Sev: {currentItem.Severity} selectedTicket Sev: {selectedItem.Severity}");
+                    Debug.WriteLine($"Updated ticket {selectedItem.PrimaryKey}");
                     itemList[index] = currentItem;
                     NotifyPropertyChanged(nameof(itemList));
                     MainSplit.IsPaneOpen = false;
              } else {
-                Debug.WriteLine($"Editted ticket had a different ticket number! Selected: {selectedItem.SupportTicketNumber}, Current: {currentItem.SupportTicketNumber}");
+                Debug.WriteLine($"Editted ticket had a different ticket number! Selected: {selectedItem.PrimaryKey}, Current: {currentItem.PrimaryKey}");
             }
 
            
@@ -115,14 +114,9 @@ namespace RedisExplorerUWP
         public void Button_Create(Object sender, RoutedEventArgs e)
         {
             createItem = true;
-            currentItem = new SupportTicket
+            currentItem = new RedisItem
             {
-                SupportTicketNumber = "0",
-                CreatedOn = DateTime.Now,
-                Severity = "C",
-                SLACreated = DateTime.Now,
-                SLAExpiry = DateTime.Now,
-                SLAMet = ""
+                PrimaryKey = "0"
             };
             NotifyPropertyChanged(nameof(currentItem));
         }

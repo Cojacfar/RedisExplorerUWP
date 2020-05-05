@@ -42,7 +42,7 @@ namespace RedisExplorerUWP.Model
         /// </summary>
         /// <param name="ticketList"></param>
         /// <returns></returns>
-        public async Task<ObservableCollection<SupportTicket>> GetTickets(ObservableCollection<SupportTicket> ticketList)
+        public async Task<ObservableCollection<RedisItem>> GetTickets(ObservableCollection<RedisItem> ticketList)
         {
             try
             {
@@ -52,7 +52,6 @@ namespace RedisExplorerUWP.Model
                 var endPoint = RedisConnection.GetEndPoints().First();
                 RedisKey[] keys = RedisConnection.GetServer(endPoint).Keys(pattern: "*").ToArray();
 
-                // BindingList<SupportTicket> AllSupportTickets = new BindingList<SupportTicket>();
                 foreach (var key in keys)
                 {
                     try
@@ -60,9 +59,14 @@ namespace RedisExplorerUWP.Model
                         var CacheValue = await cache.StringGetAsync(key);
                         if (!string.IsNullOrEmpty(CacheValue))
                         {
-                            //AllSupportTickets.Add(JsonConvert.DeserializeObject<SupportTicket>(CacheValue));
-                            Debug.WriteLine($"Retrieved from Redis: {JsonConvert.DeserializeObject<SupportTicket>(CacheValue).SupportTicketNumber}");
-                            ticketList.Add(JsonConvert.DeserializeObject<SupportTicket>(CacheValue));
+                            Debug.WriteLine($"Retrieved from Redis: {JsonConvert.DeserializeObject(CacheValue)}");
+                            RedisItem tempObject = new RedisItem()
+                            {
+                                PrimaryKey = key,
+                                redisJSON = JsonConvert.DeserializeObject<Dictionary<string, string>>(CacheValue)
+                            };
+                            
+                            ticketList.Add(tempObject);
                         }
                     }
                     catch (Exception ex)
@@ -82,39 +86,39 @@ namespace RedisExplorerUWP.Model
             }
         }
 
-        public async Task<Boolean> DeleteTicket(string serviceTicketNumber)
+        public async Task<Boolean> DeleteTicket(string primaryKey)
         {
             try
             {
                 IDatabase cache = RedisConnection.GetDatabase();
-                Debug.WriteLine($"Deleting Ticket # {serviceTicketNumber}");
-                await cache.KeyDeleteAsync(serviceTicketNumber);
+                Debug.WriteLine($"Deleting Ticket # {primaryKey}");
+                await cache.KeyDeleteAsync(primaryKey);
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"SupportTicketDataService.DeleteSupportTicket({serviceTicketNumber}): {ex.Message} - {ex.StackTrace}");
+                Debug.WriteLine($"DataHelper.DeleteSupportTicket({primaryKey}): {ex.Message} - {ex.StackTrace}");
                 return false;
             }
         }
         /// <summary>
         /// Replaces a ticket in Redis using the supportTicketNumber as the Redis key, and the all the fields of the passed in Support Ticket
         /// </summary>
-        /// <param name="supportTicket"></param>
+        /// <param name="redisItem"></param>
         /// <returns></returns>
-        public async Task<Boolean> EditTicket(SupportTicket supportTicket)
+        public async Task<Boolean> EditItem(RedisItem redisItem)
         {
             try
             {
                 IDatabase cache = RedisConnection.GetDatabase();
-                Debug.WriteLine($"Updating Support Ticket {supportTicket.SupportTicketNumber}");
-                await cache.StringSetAsync(supportTicket.SupportTicketNumber, JsonConvert.SerializeObject(supportTicket));
+                Debug.WriteLine($"Updating Item {redisItem.PrimaryKey}");
+                await cache.StringSetAsync(redisItem.PrimaryKey, JsonConvert.SerializeObject(redisItem.redisJSON));
 
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"SupportTicketDataService.EditSupportTicket({supportTicket.SupportTicketNumber}): {ex.Message} - {ex.StackTrace}");
+                Debug.WriteLine($"DataHelper.EditItem ({redisItem.PrimaryKey}): {ex.Message} - {ex.StackTrace}");
                 return false;
             }
         }
@@ -124,18 +128,18 @@ namespace RedisExplorerUWP.Model
         /// </summary>
         /// <param name="supportTicket"></param>
         /// <returns></returns>
-        public async Task<Boolean> AddNew(SupportTicket supportTicket)
+        public async Task<Boolean> AddNew(RedisItem redisItem)
         {
             try
             {
                 IDatabase cache = RedisConnection.GetDatabase();
-                await cache.StringSetAsync(supportTicket.SupportTicketNumber, JsonConvert.SerializeObject(supportTicket));
+                await cache.StringSetAsync(redisItem.PrimaryKey, JsonConvert.SerializeObject(redisItem.redisJSON));
 
                 return true;
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"SupportTicketDataService.AddNew({supportTicket.SupportTicketNumber}): {ex.Message} - {ex.StackTrace}");
+                Debug.WriteLine($"DataHelper.AddNew({redisItem.PrimaryKey}): {ex.Message} - {ex.StackTrace}");
                 return false;
             }
         }

@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace RedisExplorerUWP.Model
 {
-    class RedisItem : INotifyPropertyChanged
+    public class RedisItem : INotifyPropertyChanged
     {
         public string PrimaryKey { get; set; }
         public RedisItem Clone()

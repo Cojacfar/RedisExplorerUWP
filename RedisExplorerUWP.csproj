@@ -126,7 +126,6 @@
     <Compile Include="Model\ConnectionString.cs" />
     <Compile Include="Model\DataHelper.cs" />
     <Compile Include="Model\RedisItem.cs" />
-    <Compile Include="Model\SupportTicket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

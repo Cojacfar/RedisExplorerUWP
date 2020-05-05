@@ -70,7 +70,7 @@ namespace RedisExplorerUWP
             global::Windows.UI.Xaml.Markup.IComponentConnector,
             IMainPage_Bindings
         {
-            private global::RedisExplorerUWP.Model.SupportTicket dataRoot;
+            private global::RedisExplorerUWP.Model.RedisItem dataRoot;
             private bool initialized = false;
             private const int NOT_PHASED = (1 << 31);
             private const int DATA_CHANGED = (1 << 30);
@@ -193,7 +193,7 @@ namespace RedisExplorerUWP
                         this.initialized = true;
                         break;
                 }
-                this.Update_((global::RedisExplorerUWP.Model.SupportTicket) item, 1 << phase);
+                this.Update_((global::RedisExplorerUWP.Model.RedisItem) item, 1 << phase);
             }
 
             public void Recycle()
@@ -229,14 +229,14 @@ namespace RedisExplorerUWP
             {
                 if (newDataRoot != null)
                 {
-                    this.dataRoot = (global::RedisExplorerUWP.Model.SupportTicket)newDataRoot;
+                    this.dataRoot = (global::RedisExplorerUWP.Model.RedisItem)newDataRoot;
                     return true;
                 }
                 return false;
             }
 
             // Update methods for each path node used in binding steps.
-            private void Update_(global::RedisExplorerUWP.Model.SupportTicket obj, int phase)
+            private void Update_(global::RedisExplorerUWP.Model.RedisItem obj, int phase)
             {
                 if (obj != null)
                 {
@@ -552,7 +552,7 @@ namespace RedisExplorerUWP
                     }
                 }
             }
-            private void Update_ticketList(global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.SupportTicket> obj, int phase)
+            private void Update_ticketList(global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.RedisItem> obj, int phase)
             {
                 this.bindingsTracking.UpdateChildListeners_ticketList(obj);
                 if ((phase & ((1 << 0) | NOT_PHASED | DATA_CHANGED)) != 0)
@@ -564,7 +564,7 @@ namespace RedisExplorerUWP
                     }
                 }
             }
-            private void Update_selectedTicket(global::RedisExplorerUWP.Model.SupportTicket obj, int phase)
+            private void Update_selectedTicket(global::RedisExplorerUWP.Model.RedisItem obj, int phase)
             {
                 this.bindingsTracking.UpdateChildListeners_selectedTicket(obj);
                 if ((phase & ((1 << 0) | NOT_PHASED | DATA_CHANGED)) != 0)
@@ -576,7 +576,7 @@ namespace RedisExplorerUWP
                     }
                 }
             }
-            private void Update_currentTicket(global::RedisExplorerUWP.Model.SupportTicket obj, int phase)
+            private void Update_currentTicket(global::RedisExplorerUWP.Model.RedisItem obj, int phase)
             {
                 this.bindingsTracking.UpdateChildListeners_currentTicket(obj);
                 if (obj != null)
@@ -684,7 +684,7 @@ namespace RedisExplorerUWP
                 {
                     if (this.dataRoot != null)
                     {
-                        this.dataRoot.itemList = (global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.SupportTicket>)this.obj6.ItemsSource;
+                        this.dataRoot.itemList = (global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.RedisItem>)this.obj6.ItemsSource;
                     }
                 }
             }
@@ -694,7 +694,7 @@ namespace RedisExplorerUWP
                 {
                     if (this.dataRoot != null)
                     {
-                        this.dataRoot.selectedItem = (global::RedisExplorerUWP.Model.SupportTicket)this.obj6.SelectedItem;
+                        this.dataRoot.selectedItem = (global::RedisExplorerUWP.Model.RedisItem)this.obj6.SelectedItem;
                     }
                 }
             }
@@ -901,7 +901,7 @@ namespace RedisExplorerUWP
                     if (bindings != null)
                     {
                         string propName = e.PropertyName;
-                        global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.SupportTicket> obj = sender as global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.SupportTicket>;
+                        global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.RedisItem> obj = sender as global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.RedisItem>;
                         if (global::System.String.IsNullOrEmpty(propName))
                         {
                         }
@@ -920,11 +920,11 @@ namespace RedisExplorerUWP
                     MainPage_obj1_Bindings bindings = TryGetBindingObject();
                     if (bindings != null)
                     {
-                        global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.SupportTicket> obj = sender as global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.SupportTicket>;
+                        global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.RedisItem> obj = sender as global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.RedisItem>;
                     }
                 }
-                private global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.SupportTicket> cache_ticketList = null;
-                public void UpdateChildListeners_ticketList(global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.SupportTicket> obj)
+                private global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.RedisItem> cache_ticketList = null;
+                public void UpdateChildListeners_ticketList(global::System.Collections.ObjectModel.ObservableCollection<global::RedisExplorerUWP.Model.RedisItem> obj)
                 {
                     if (obj != cache_ticketList)
                     {
@@ -948,7 +948,7 @@ namespace RedisExplorerUWP
                     if (bindings != null)
                     {
                         string propName = e.PropertyName;
-                        global::RedisExplorerUWP.Model.SupportTicket obj = sender as global::RedisExplorerUWP.Model.SupportTicket;
+                        global::RedisExplorerUWP.Model.RedisItem obj = sender as global::RedisExplorerUWP.Model.RedisItem;
                         if (global::System.String.IsNullOrEmpty(propName))
                         {
                         }
@@ -962,8 +962,8 @@ namespace RedisExplorerUWP
                         }
                     }
                 }
-                private global::RedisExplorerUWP.Model.SupportTicket cache_selectedTicket = null;
-                public void UpdateChildListeners_selectedTicket(global::RedisExplorerUWP.Model.SupportTicket obj)
+                private global::RedisExplorerUWP.Model.RedisItem cache_selectedTicket = null;
+                public void UpdateChildListeners_selectedTicket(global::RedisExplorerUWP.Model.RedisItem obj)
                 {
                     if (obj != cache_selectedTicket)
                     {
@@ -985,7 +985,7 @@ namespace RedisExplorerUWP
                     if (bindings != null)
                     {
                         string propName = e.PropertyName;
-                        global::RedisExplorerUWP.Model.SupportTicket obj = sender as global::RedisExplorerUWP.Model.SupportTicket;
+                        global::RedisExplorerUWP.Model.RedisItem obj = sender as global::RedisExplorerUWP.Model.RedisItem;
                         if (global::System.String.IsNullOrEmpty(propName))
                         {
                             if (obj != null)
@@ -1056,8 +1056,8 @@ namespace RedisExplorerUWP
                         }
                     }
                 }
-                private global::RedisExplorerUWP.Model.SupportTicket cache_currentTicket = null;
-                public void UpdateChildListeners_currentTicket(global::RedisExplorerUWP.Model.SupportTicket obj)
+                private global::RedisExplorerUWP.Model.RedisItem cache_currentTicket = null;
+                public void UpdateChildListeners_currentTicket(global::RedisExplorerUWP.Model.RedisItem obj)
                 {
                     if (obj != cache_currentTicket)
                     {
