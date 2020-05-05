@@ -13,6 +13,7 @@ namespace RedisExplorerUWP.Model
     public class ConnectionString : INotifyPropertyChanged
     {
         public string connectionString { get; set; }
+        public string[] JSONKeys { get; set; }
         public string nickname { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(string propertyName)

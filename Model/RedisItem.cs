@@ -5,6 +5,9 @@ using System.ComponentModel;
 
 namespace RedisExplorerUWP.Model
 {
+    /// <summary>
+    /// Model for items stored in the Redis Cache we are connecting
+    /// </summary>
     public class RedisItem : INotifyPropertyChanged
     {
         public string PrimaryKey { get; set; }
@@ -12,6 +15,10 @@ namespace RedisExplorerUWP.Model
         {
             return (RedisItem)this.MemberwiseClone();
         }
+
+        /// <summary>
+        /// The JSON data retrieved by querying the Redis Cache. This is a Dictionary as we do not know what the keys will be ahead of time for any given cache. 
+        /// </summary>
         public Dictionary<string, string> redisJSON;
 
         public event PropertyChangedEventHandler PropertyChanged;

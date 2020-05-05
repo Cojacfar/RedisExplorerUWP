@@ -25,7 +25,6 @@ namespace RedisExplorerUWP.Model
 
         public void CreateConnection(string connectionString)
         {
-           // RedisConnection = ConnectionMultiplexer.Connect((App.Current as App).RedisConnection);
             RedisConnection = ConnectionMultiplexer.Connect(connectionString);
         }
 
@@ -38,7 +37,7 @@ namespace RedisExplorerUWP.Model
             CreateConnection(connectionString);
         }
         /// <summary>
-        /// Retrieves all keys in the Redis Server, and adds the complete Deserialized supportTicket object into the passed in ObservableCollection
+        /// Retrieves all keys in the Redis Server, and adds the complete Deserialized redisItem object into the passed in ObservableCollection
         /// </summary>
         /// <param name="ticketList"></param>
         /// <returns></returns>
