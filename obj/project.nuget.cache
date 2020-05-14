@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+qewIyLmKLh8n5uZG7JqSQzoMxmiA9tFLtHvht4ToR10hvp2iJUMpjyvhD+j7PdNsb4dGUVDhh0DgNDv0EJplw==",
+  "dgSpecHash": "jQdQ4W+TLieKX5RxfIm5cnALZ9DnkwQMijX2SztXFecQpn8zRlXO3TLlo3qCHOvT4iRrmtnNiV+/FNvF6naPZg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Cody\\Source\\Repos\\JEDICommlink\\RedisExplorerUWP\\RedisExplorerUWP.csproj",
+  "projectFilePath": "C:\\Users\\Cody\\Source\\Repos\\RedisExplorerUWP\\RedisExplorerUWP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Cody\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.0\\microsoft.bcl.asyncinterfaces.1.1.0.nupkg.sha512",
     "C:\\Users\\Cody\\.nuget\\packages\\microsoft.net.native.compiler\\2.2.8-rel-28605-00\\microsoft.net.native.compiler.2.2.8-rel-28605-00.nupkg.sha512",

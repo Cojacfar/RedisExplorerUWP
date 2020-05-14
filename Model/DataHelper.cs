@@ -41,7 +41,7 @@ namespace RedisExplorerUWP.Model
         /// </summary>
         /// <param name="ticketList"></param>
         /// <returns></returns>
-        public async Task<ObservableCollection<RedisItem>> GetTickets(ObservableCollection<RedisItem> ticketList)
+        public async Task<ObservableCollection<RedisItem>> GetItems(ObservableCollection<RedisItem> ticketList)
         {
             try
             {
@@ -75,7 +75,6 @@ namespace RedisExplorerUWP.Model
                     }
                 }
 
-                // return AllSupportTickets;
                 return ticketList;
             }
             catch (Exception ex)
@@ -101,7 +100,7 @@ namespace RedisExplorerUWP.Model
             }
         }
         /// <summary>
-        /// Replaces a ticket in Redis using the supportTicketNumber as the Redis key, and the all the fields of the passed in Support Ticket
+        /// Replaces a ticket in Redis using the primaryKey as the Redis key, and the all the fields of the passed in redis Item
         /// </summary>
         /// <param name="redisItem"></param>
         /// <returns></returns>
@@ -123,7 +122,7 @@ namespace RedisExplorerUWP.Model
         }
 
         /// <summary>
-        /// Use StringSetAsync to create a new entry into Redis with the SupportTicketNumber as the key
+        /// Use StringSetAsync to create a new entry into Redis with the PrimaryKey as the key
         /// </summary>
         /// <param name="supportTicket"></param>
         /// <returns></returns>
@@ -141,6 +140,28 @@ namespace RedisExplorerUWP.Model
                 Debug.WriteLine($"DataHelper.AddNew({redisItem.PrimaryKey}): {ex.Message} - {ex.StackTrace}");
                 return false;
             }
+        }
+
+        /// <summary>
+        /// Inspecting first 10 keys from the Redis Cache to check the Schema of their entries to know what to display as columns. Storing this into the passed connection object. 
+        /// 
+        /// Right now, this is just checking the first one. It may be required to check more if people are using multiple schemas in their cache
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <returns></returns>
+        public async Task<List<string>> GuessSchema(ConnectionString connection)
+        {
+            IDatabase cache = RedisConnection.GetDatabase();
+            var endPoint = RedisConnection.GetEndPoints().First();
+            IServer server = RedisConnection.GetServer(endPoint);
+            var keys = server.Keys(pattern: "*", pageSize: 10).ToArray();
+            var response = await cache.StringGetAsync(keys[0]);
+
+            Dictionary<string, string> JSONdict = JsonConvert.DeserializeObject<Dictionary<string, string>>(response);
+            List<string> JsonKeys = JSONdict.Keys.ToList();
+            connection.JSONKeys = JsonKeys;
+            return JsonKeys;
+
         }
     }
 }

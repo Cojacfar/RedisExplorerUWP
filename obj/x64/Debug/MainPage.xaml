@@ -1,4 +1,4 @@
-﻿<Page
+﻿<Page x:ConnectionId='1'
     x:Class="RedisExplorerUWP.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -12,7 +12,7 @@
     <Page.Resources>
         <convert:DateConverter x:Key="DateConverter" />
     </Page.Resources>
-    <SplitView Name="MainSplit" 
+    <SplitView x:ConnectionId='2' Name="MainSplit" 
            IsPaneOpen="False"
            DisplayMode="Inline"
            PanePlacement="Right"
@@ -28,13 +28,13 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <MenuBar Margin="0 5 0 0" Grid.Row="0" Grid.Column="0">
-                <MenuBarItem Title="Manage Connections" x:Name="ManageConnection">
-                    <MenuFlyoutItem Text="New" Click="OnClick_NewConnection" />
+                <MenuBarItem x:ConnectionId='8' Title="Manage Connections" x:Name="ManageConnection">
+                    <MenuFlyoutItem x:ConnectionId='9' Text="New"                               />
                     <MenuFlyoutSeparator />
                 </MenuBarItem>
             </MenuBar>
             <RelativePanel Grid.Row="1" Grid.Column="0">
-                <ListView Name="RedisCache"
+                <ListView x:ConnectionId='6' Name="RedisCache"
                   SelectionMode="Single"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.IsVerticalRailEnabled="True"
@@ -44,14 +44,13 @@
                   ScrollViewer.IsHorizontalRailEnabled="True"
                   Margin="20"
                   Width="auto"
-                  SelectionChanged="RedisCache_SelectionChanged"
-                  ItemsSource="{x:Bind itemList, Mode=TwoWay}"
-                  SelectedItem="{x:Bind selectedItem, Mode=TwoWay}"
-                  Loaded="List_Loaded" >
+                                                                
+                                                              
+                                                                   
+                                       >
                     <ListView.HeaderTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" x:Name="ColumnNames">
-                                <TextBlock Text="ID" Margin="8,0" Width="300" Foreground="{ThemeResource SystemAccentColor}" />
                             </StackPanel>
                         </DataTemplate>
                     </ListView.HeaderTemplate>
@@ -61,19 +60,19 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </RelativePanel>
-            <ContentDialog x:Name="newConnectionDialog"
+            <ContentDialog x:ConnectionId='3' x:Name="newConnectionDialog"
                 PrimaryButtonText="Save" IsPrimaryButtonEnabled="True"
                 CloseButtonText="Cancel"
                 Title="Add New Redis Connection">
                 <StackPanel>
-                    <TextBox Name="connectionNick"
+                    <TextBox x:ConnectionId='4' Name="connectionNick"
                      TextAlignment="Left"
-                     Text="{x:Bind currentNick, Mode=TwoWay}"
+                                                             
                                Width="auto"
                                Height="auto" />
-                    <TextBox Name="redisInput" 
+                    <TextBox x:ConnectionId='5' Name="redisInput" 
                     TextAlignment="Left"
-                    Text="{x:Bind currentConnectionString, Mode=TwoWay}"
+                                                                        
                     Width="auto"
                     Height="auto" />
                 </StackPanel>
@@ -81,7 +80,7 @@
 
         </Grid>
         <SplitView.Pane>
-            <Grid x:Name="PaneGrid"  Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
+            <Grid x:ConnectionId='10' x:Name="PaneGrid"  Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
@@ -102,3 +101,4 @@
     </SplitView>
 
 </Page>
+

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Cody\\Source\\Repos\\JEDICommlink\\RedisExplorerUWP\\RedisExplorerUWP.csproj": {}
+    "C:\\Users\\Cody\\Source\\Repos\\RedisExplorerUWP\\RedisExplorerUWP.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Cody\\Source\\Repos\\JEDICommlink\\RedisExplorerUWP\\RedisExplorerUWP.csproj": {
+    "C:\\Users\\Cody\\Source\\Repos\\RedisExplorerUWP\\RedisExplorerUWP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Cody\\Source\\Repos\\JEDICommlink\\RedisExplorerUWP\\RedisExplorerUWP.csproj",
+        "projectUniqueName": "C:\\Users\\Cody\\Source\\Repos\\RedisExplorerUWP\\RedisExplorerUWP.csproj",
         "projectName": "RedisExplorerUWP",
-        "projectPath": "C:\\Users\\Cody\\Source\\Repos\\JEDICommlink\\RedisExplorerUWP\\RedisExplorerUWP.csproj",
+        "projectPath": "C:\\Users\\Cody\\Source\\Repos\\RedisExplorerUWP\\RedisExplorerUWP.csproj",
         "packagesPath": "C:\\Users\\Cody\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Cody\\Source\\Repos\\JEDICommlink\\RedisExplorerUWP\\obj\\",
+        "outputPath": "C:\\Users\\Cody\\Source\\Repos\\RedisExplorerUWP\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [

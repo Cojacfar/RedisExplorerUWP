@@ -1,1 +1,1 @@
-C:\Users\Cody\Source\Repos\JEDICommlink\RedisExplorerUWP\RedisExplorerUWP.csproj;x64
+C:\Users\Cody\Source\Repos\RedisExplorerUWP\RedisExplorerUWP.csproj;x64
