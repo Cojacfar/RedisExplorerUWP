@@ -11,6 +11,7 @@ namespace RedisExplorerUWP.Model
     public class RedisItem : INotifyPropertyChanged
     {
         public string PrimaryKey { get; set; }
+
         public RedisItem Clone()
         {
             return (RedisItem)this.MemberwiseClone();
@@ -20,6 +21,7 @@ namespace RedisExplorerUWP.Model
         /// The JSON data retrieved by querying the Redis Cache. This is a Dictionary as we do not know what the keys will be ahead of time for any given cache. 
         /// </summary>
         public Dictionary<string, string> redisJSON;
+        public List<string> values;
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propertyName)

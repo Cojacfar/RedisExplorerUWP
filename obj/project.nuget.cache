@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "jQdQ4W+TLieKX5RxfIm5cnALZ9DnkwQMijX2SztXFecQpn8zRlXO3TLlo3qCHOvT4iRrmtnNiV+/FNvF6naPZg==",
+  "dgSpecHash": "g3SG/k6E60+zXcohmK7GpfMuSJzkkt2hXibIlv4cwSH0nr6RAvNT+3+MlmsxpDkFG1Y3aUO2myCrgoL6krQNFg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Cody\\Source\\Repos\\RedisExplorerUWP\\RedisExplorerUWP.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Cody\\.nuget\\packages\\microsoft.netcore.universalwindowsplatform\\6.2.10\\microsoft.netcore.universalwindowsplatform.6.2.10.nupkg.sha512",
     "C:\\Users\\Cody\\.nuget\\packages\\microsoft.toolkit\\6.0.0\\microsoft.toolkit.6.0.0.nupkg.sha512",
     "C:\\Users\\Cody\\.nuget\\packages\\microsoft.toolkit.uwp\\6.0.0\\microsoft.toolkit.uwp.6.0.0.nupkg.sha512",
+    "C:\\Users\\Cody\\.nuget\\packages\\microsoft.toolkit.uwp.ui.controls.datagrid\\6.0.0\\microsoft.toolkit.uwp.ui.controls.datagrid.6.0.0.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft SDKs\\UWPNuGetPackages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
     "C:\\Users\\Cody\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512",
     "C:\\Users\\Cody\\.nuget\\packages\\pipelines.sockets.unofficial\\2.1.6\\pipelines.sockets.unofficial.2.1.6.nupkg.sha512",

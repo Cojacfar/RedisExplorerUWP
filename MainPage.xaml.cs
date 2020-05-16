@@ -2,13 +2,14 @@
 using System.Diagnostics;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using RedisExplorerUWP.Model;
 using System.Collections.ObjectModel;
 using Microsoft.Toolkit.Uwp.Helpers;
 using System.Collections.Generic;
+using Microsoft.Toolkit.Uwp.UI.Controls;
+using Windows.UI.Xaml.Data;
 
 namespace RedisExplorerUWP
 {
@@ -61,124 +62,18 @@ namespace RedisExplorerUWP
         public async void Update_Columns()
         {
             List<string> redisKeys = await _redisHelper.GuessSchema(currentConnection);
-            RedisCache.HeaderTemplate.SetValue
-            //  <TextBlock Text="ID" Margin="8,0" Width="300" Foreground="{ThemeResource SystemAccentColor}" />
-            //           <DataTemplate x:DataType="local:RedisItem">
-            //  < StackPanel Orientation = "Horizontal" HorizontalAlignment = "Center" >
+            foreach (string text in redisKeys)
+            {
+                Binding b = new Binding();
+                b.Mode = BindingMode.OneWay;
+                b.Source = "redisJSON[" + text + "]";
 
-                            //         < TextBlock Name = "SupportTicketNumber"
-                            //          Text = "{x:Bind SupportTicketNumber}"
-                            //          Width = "300" Margin = "8,0" />
-
-                            //        < TextBlock Name = "ItemName"
-                            //          Text = "{x:Bind CreatedOn}"
-                            //          Width = "auto" Margin = "8,0" />
-
-                            //        < TextBlock Text = "{x:Bind Severity}"
-                            //         Width = "auto" Margin = "8,0" />
-
-                            //        < TextBlock Text = "{x:Bind SLAMet}"
-                            //         Width = "auto" Margin = "8,0" />
-
-                            //        < TextBlock Text = "{x:Bind SLAExpiry}"
-                            //         Width = "auto" Margin = "8,0" />
-
-                            //    </ StackPanel >
-
-                            //</ DataTemplate >
-
-                  //          < AppBarButton Icon = "ClosePane" Label = "Close" Click = "Button_Close" Grid.Row = "0" Grid.Column = "3" HorizontalAlignment = "Right" HorizontalContentAlignment = "Right" />
-             
-                  //           < TextBlock Name = "NumberHeader"
-                  //  TextAlignment = "Left"
-                  //  Text = "Support Ticket Number:"
-                  //  Width = "200"
-                  //  Height = "auto"
-                  //  Grid.Row = "0" Grid.Column = "0" />
-  
-                  //< TextBox Name = "SupportTicketNumber"
-                  //  TextAlignment = "Left"
-                  //  Text = "{x:Bind currentTicket.SupportTicketNumber, Mode=TwoWay}"
-                  //  Width = "auto" Height = "auto"
-                  //  Grid.Row = "0" Grid.Column = "1" Grid.ColumnSpan = "2"
-                  //      />
-    
-                  //  < TextBlock Name = "CreatedHeader"
-                  //  TextAlignment = "Left"
-                  //  Text = "Created On:"
-                  //  Width = "auto"
-                  //  Height = "auto"
-                  //  Grid.Row = "1" Grid.Column = "0" />
-  
-                  //< CalendarDatePicker Name = "CreatedOn"
-                  //  Date = "{x:Bind currentTicket.CreatedOn, Mode=TwoWay, Converter={ StaticResource DateConverter }}"
-                  //  DateFormat = "{}{month.integer}/{day.integer}/{year.full}"
-                  //  Width = "auto"
-                  //  Grid.Row = "1" Grid.Column = "1" Grid.ColumnSpan = "2" />
-    
-                  //  < TextBlock Name = "SeverityHeader"
-                  //  TextAlignment = "Left"
-                  //  Text = "Severity:"
-                  //  Width = "auto"
-                  //  Height = "auto"
-                  //  Grid.Row = "2" Grid.Column = "0" />
-  
-                  //< TextBox
-                  //  TextAlignment = "Left"
-                  //  Text = "{x:Bind currentTicket.Severity, Mode=TwoWay}"
-                  //  Width = "auto"
-                  //  Grid.Row = "2" Grid.Column = "1" Grid.ColumnSpan = "2" />
-    
-                  //  < TextBlock Name = "SLACreatedHeader"
-                  //  TextAlignment = "Left"
-                  //  Text = "SLA Created:"
-                  //  Width = "auto"
-                  //  Height = "auto"
-                  //  Grid.Row = "3" Grid.Column = "0" />
-  
-                  //< CalendarDatePicker
-                  //  Name = "SLACreated"
-                  //  Date = "{x:Bind currentTicket.SLACreated, Mode=TwoWay, Converter={ StaticResource DateConverter }}"
-                  //  DateFormat = "{}{month.integer}/{day.integer}/{year.full}"
-                  //  Width = "auto"
-                  //  Grid.Row = "3" Grid.Column = "1" Grid.ColumnSpan = "2" />
-    
-                  //  < TextBlock Name = "SLAMetHeader"
-                  //  TextAlignment = "Left"
-                  //  Text = "SLA Met:"
-                  //  Width = "auto"
-                  //  Height = "auto"
-                  //  Grid.Row = "4" Grid.Column = "0" />
-  
-                  //< TextBox
-                  //  TextAlignment = "Left"
-                  //  Text = "{x:Bind currentTicket.SLAMet, Mode=TwoWay}"
-                  //  Width = "auto"
-                  //  Grid.Row = "4" Grid.Column = "1" Grid.ColumnSpan = "2" />
-    
-                  //  < TextBlock Name = "SLAExpiryHeader"
-                  //  TextAlignment = "Left"
-                  //  Text = "SLA Expiry:"
-                  //  Width = "auto"
-                  //  Height = "auto"
-                  //  Grid.Row = "5" Grid.Column = "0" />
-  
-                  //< CalendarDatePicker
-                  //  Name = "SLAExpiry"
-                  //  Date = "{x:Bind currentTicket.SLAExpiry, Mode=TwoWay, Converter={ StaticResource DateConverter }}"
-                  //  DateFormat = "{}{month.integer}/{day.integer}/{year.full}"
-                  //  Width = "auto"
-                  //  Grid.Row = "5" Grid.Column = "1" Grid.ColumnSpan = "2" />
-    
-                  //  < StackPanel Orientation = "Horizontal" Grid.Row = "6" Grid.Column = "0" Grid.ColumnSpan = "4" >
-           
-                  //             < AppBarButton Icon = "Save" Label = "Save" Click = "Button_Save" />
-                
-                  //                  < AppBarButton Icon = "Delete" Label = "Delete" Click = "Button_Delete" />
-                     
-                  //                       < AppBarButton Icon = "Add" Label = "Create New" Click = "Button_Create" />
-                          
-                  //                        </ StackPanel >
+                RedisCache.Columns.Add(new DataGridTextColumn
+                {
+                    Header = text,
+                    Binding = b
+                }); ;
+            }
         }
 
         void RedisCache_SelectionChanged(object sender, SelectionChangedEventArgs e)

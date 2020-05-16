@@ -1,6 +1,7 @@
 ﻿<Page
     x:Class="RedisExplorerUWP.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RedisExplorerUWP.Model"
     xmlns:convert="using:RedisExplorerUWP.Converter"
@@ -34,32 +35,21 @@
                 </MenuBarItem>
             </MenuBar>
             <RelativePanel Grid.Row="1" Grid.Column="0">
-                <ListView Name="RedisCache"
-                  SelectionMode="Single"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.IsVerticalRailEnabled="True"
-                  ScrollViewer.VerticalScrollMode="Enabled"
-                  ScrollViewer.HorizontalScrollMode="Enabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ScrollViewer.IsHorizontalRailEnabled="True"
-                  Margin="20"
-                  Width="auto"
-                  SelectionChanged="RedisCache_SelectionChanged"
-                  ItemsSource="{x:Bind itemList, Mode=TwoWay}"
-                  SelectedItem="{x:Bind selectedItem, Mode=TwoWay}"
-                  Loaded="List_Loaded" >
-                    <ListView.HeaderTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" x:Name="ColumnNames">
-                                <TextBlock Text="ID" Margin="8,0" Width="300" Foreground="{ThemeResource SystemAccentColor}" />
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.HeaderTemplate>
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <controls:DataGrid Name="RedisCache"
+                                AutoGenerateColumns="True"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                ScrollViewer.IsVerticalRailEnabled="True"
+                                ScrollViewer.VerticalScrollMode="Enabled"
+                                ScrollViewer.HorizontalScrollMode="Enabled"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                ScrollViewer.IsHorizontalRailEnabled="True"
+                                Margin="20"
+                                Width="auto"
+                                SelectionChanged="RedisCache_SelectionChanged"
+                                ItemsSource="{x:Bind itemList, Mode=TwoWay}"
+                                SelectedItem="{x:Bind selectedItem, Mode=TwoWay}"
+                                Loaded="List_Loaded" >
+                </controls:DataGrid>
             </RelativePanel>
             <ContentDialog x:Name="newConnectionDialog"
                 PrimaryButtonText="Save" IsPrimaryButtonEnabled="True"

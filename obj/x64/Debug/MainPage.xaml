@@ -1,6 +1,7 @@
 ﻿<Page x:ConnectionId='1'
     x:Class="RedisExplorerUWP.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:controls="using:Microsoft.Toolkit.Uwp.UI.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:RedisExplorerUWP.Model"
     xmlns:convert="using:RedisExplorerUWP.Converter"
@@ -28,37 +29,27 @@
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
             <MenuBar Margin="0 5 0 0" Grid.Row="0" Grid.Column="0">
-                <MenuBarItem x:ConnectionId='8' Title="Manage Connections" x:Name="ManageConnection">
-                    <MenuFlyoutItem x:ConnectionId='9' Text="New"                               />
+                <MenuBarItem x:ConnectionId='7' Title="Manage Connections" x:Name="ManageConnection">
+                    <MenuFlyoutItem x:ConnectionId='8' Text="New"                               />
                     <MenuFlyoutSeparator />
                 </MenuBarItem>
             </MenuBar>
             <RelativePanel Grid.Row="1" Grid.Column="0">
-                <ListView x:ConnectionId='6' Name="RedisCache"
-                  SelectionMode="Single"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.IsVerticalRailEnabled="True"
-                  ScrollViewer.VerticalScrollMode="Enabled"
-                  ScrollViewer.HorizontalScrollMode="Enabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ScrollViewer.IsHorizontalRailEnabled="True"
-                  Margin="20"
-                  Width="auto"
-                                                                
-                                                              
-                                                                   
-                                       >
-                    <ListView.HeaderTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" x:Name="ColumnNames">
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListView.HeaderTemplate>
-                    <ListView.ItemTemplate>
-                        <DataTemplate >
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <controls:DataGrid x:ConnectionId='6' Name="RedisCache"
+                                AutoGenerateColumns="True"
+                                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                ScrollViewer.IsVerticalRailEnabled="True"
+                                ScrollViewer.VerticalScrollMode="Enabled"
+                                ScrollViewer.HorizontalScrollMode="Enabled"
+                                ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                ScrollViewer.IsHorizontalRailEnabled="True"
+                                Margin="20"
+                                Width="auto"
+                                                                              
+                                                                            
+                                                                                 
+                                                     >
+                </controls:DataGrid>
             </RelativePanel>
             <ContentDialog x:ConnectionId='3' x:Name="newConnectionDialog"
                 PrimaryButtonText="Save" IsPrimaryButtonEnabled="True"
@@ -80,7 +71,7 @@
 
         </Grid>
         <SplitView.Pane>
-            <Grid x:ConnectionId='10' x:Name="PaneGrid"  Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
+            <Grid x:ConnectionId='9' x:Name="PaneGrid"  Width="auto" Height="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,0,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="auto" />
